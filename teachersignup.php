@@ -399,7 +399,7 @@ function fileValidation1(){
 
 
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit">Signup</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" id="signup-submit" value="signup-submit" name="signup-submit">Signup</button>
 
       </form>
     </div>

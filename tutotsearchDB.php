@@ -21,7 +21,7 @@
       require 'db.inc.php';
 
 
-     $sqlget = "SELECT first_name,last_name,email,phone,address,Institution,department FROM teacherpanel where subject LIKE '%$subject%' AND division = '$division' AND district = '$district';";
+     $sqlget = "SELECT uid,first_name,last_name,email,phone,address,Institution,department FROM teacherpanel where subject LIKE '%$subject%' AND division = '$division' AND district = '$district';";
      $sqldata = mysqli_query($conn,$sqlget) or die ('error getting');
 ?>
 <br><br><br><br><br><br>
@@ -53,6 +53,7 @@
 
 
 
+
                                  <tr>
                               <td>
                                      <?php echo $row['first_name']; ?>
@@ -76,13 +77,16 @@
                                      <?php echo $row['department']; ?>
                                    </td>
 
-
+                                   <form method="post" action="tutorsearchprofile.php">
+                              
+                                        <input type="hidden" name="tuid" value="<?php echo $row['uid']; ?>">
                                    <td>
-                                     <button class="btn btn-success" name="up">Veiw Profile</button>
+                                     <input class="btn btn-success" type="submit" name="up" value="View Profile">
 
                                    </td>
-                                 </tr>
 
+                               </form>
+                      </tr>
 
                     <?php } ?>
          </tbody>

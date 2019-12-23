@@ -73,9 +73,7 @@ user-select: none;
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-        </li>
+
 
 
       </ul>
@@ -87,8 +85,15 @@ user-select: none;
       <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button">Logout </button>
       &nbsp;&nbsp;&nbsp;
       </form>
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button"><a class="link" href="addStud.php"> <?php echo $user; ?> </a> </button>
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button"><a class="link" href="teacherprofile.php"> <?php echo $user; ?> </a> </button>
       &nbsp;&nbsp;&nbsp;
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="teacherprofile.php">My Profile </a></button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="teacherrequestlist.php"> Request list</a></button>
+          &nbsp;&nbsp;&nbsp;
+
+
+
 
   <?php
 
@@ -99,8 +104,10 @@ user-select: none;
          <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button">Logout </button>
          &nbsp;&nbsp;&nbsp;
          </form>
-         <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button"><a class="link" href="addStud.php"> <?php echo $suser; ?> </a> </button>
+         <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="logout-button"><a class="link" href="studentprofile.php"> <?php echo $suser; ?> </a> </button>
          &nbsp;&nbsp;&nbsp;
+         <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="studentprofile.php">My Profile </a></button>
+           &nbsp;&nbsp;&nbsp;
 
      <?php
     }
