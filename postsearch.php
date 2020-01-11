@@ -13,20 +13,12 @@
    <div class="login-page">
            <div class="form">
 
-            <form class="form-signin" id="demoForm" action="studentsearchDB.php" method="POST">
+            <form class="form-signin" id="demoForm" action="postsearchDB.php" method="POST">
                <img class="mb-4" src="images/e.jpg" alt="" width="92" height="92">
-          <h1 class="h3 mb-3 font-weight-normal">Search Student</h1>
+          <h1 class="h3 mb-3 font-weight-normal"> Veiw post from your region </h1>
 
 
 
-                <select class="custom-select d-block w-100" id="subject" name="subject" required>
-                  <option value="">Choose Subject....</option>
-                  <option value="Physics">Physics</option>
-                  <option value="Chemistry"> Chemistry </option>
-                  <option value="Math">Math</option>
-                  <option value="english"> English</option>
-
-                </select>
 
 
 

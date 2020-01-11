@@ -67,7 +67,7 @@
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
    <div class="row">
      <div class="col-12 col-md">
-       <img class="mb-2" src="images\l.png" alt="" width="50" height="50">
+       <img class="mb-2" src="images\tutor-png.png" alt="" width="60" height="50">
        <small class="d-block mb-3 text-muted">&copy; 2017-2019</small>
      </div>
      <div class="col-6 col-md">
@@ -84,10 +84,10 @@
      <div class="col-6 col-md">
        <h5>Gueided By</h5>
        <ul class="list-unstyled text-small">
-         <li><a class="text-muted" href="#">Barshon Sen</a></li>
-         <li><a class="text-muted" href="#">Lecturer</a></li>
-         <li><a class="text-muted" href="#">CSE Department</a></li>
-         <li><a class="text-muted" href="#">RUET</a></li>
+         <li><a class="text-muted" >Barshon Sen Sir</a></li>
+         <li><a class="text-muted" >Assistant Professor</a></li>
+         <li><a class="text-muted" >CSE Department</a></li>
+         <li><a class="text-muted" >RUET</a></li>
        </ul>
      </div>
      <div class="col-6 col-md">

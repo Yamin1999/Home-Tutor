@@ -15,14 +15,14 @@
      include "header.php";
 
 
-     if(isset($_SESSION['username']))
+     if(isset($_SESSION['s_uid']))
      {
-     $tuid = $_SESSION['uid'];
+     $suuid = $_SESSION['s_uid'];
      }
       require 'db.inc.php';
 
 
-     $sqlget = "SELECT * FROM teacherpanel,studentpanel,tutorrequwst where teacherpanel.uid=tutorrequwst.uid and teacherpanel.uid =$tuid;";
+     $sqlget = "SELECT * FROM teacherpanel,studentpanel,requestaccept where teacherpanel.uid=requestaccept.uid and studentpanel.s_uid =$suuid;";
      $sqldata = mysqli_query($conn,$sqlget) or die ('error getting');
 ?>
 <br><br><br><br><br><br>
@@ -39,7 +39,7 @@
 
 
                <th> Institution </th>
-               <th> Group </th>
+               <th> Department </th>
                   <th>Address</th>
                <th> Profile</th>
          </thead>
@@ -57,35 +57,35 @@
 
                                  <tr>
                                    <td>
-                                       <img src="studentpropic\<?php echo $row['s_profilepic']; ?>" width="50" height="40" alt="">
+                                       <img src="tutorpropic\<?php echo $row['profilepic']; ?>" width="50" height="40" alt="">
                                    </td>
                               <td>
-                                     <?php echo $row['s_first_name']; ?>
+                                     <?php echo $row['first_name']; ?>
                                    </td>
                                    <td>
-                                    <?php echo $row['s_last_name']; ?>
+                                    <?php echo $row['last_name']; ?>
                                    </td>
 
 
                                    <td>
-                                     <?php echo $row['s_institution']; ?>
+                                     <?php echo $row['Institution']; ?>
                                    </td>
                                    <td>
-                                     <?php echo $row['s_group']; ?>
+                                     <?php echo $row['department']; ?>
                                    </td>
                                    <td>
-                                    <?php echo $row['s_address']; ?>
+                                    <?php echo $row['address']; ?>
                                    </td>
 
-                                   <form method="post" action="teacherrequeststudentprofile.php">
+                                   <form method="post" action="requestaccepttutorprofile.php">
 
-                                        <input type="hidden" name="suid" value="<?php echo $row['s_uid']; ?>">
+                                     <input type="hidden" name="tuuid" value="<?php echo $row['uid']; ?>">
                                    <td>
                                      <input class="btn btn-success" type="submit" name="up" value="View Profile">
 
                                    </td>
 
-                               </form>
+                                  </form>
                       </tr>
 
                     <?php } ?>

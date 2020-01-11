@@ -1,55 +1,43 @@
 
 <?php
 include "Header.php";
-
  ?>
 
-<br>
-<br>
-<br>
-
 <?php
-
-if(isset($_SESSION['s_uid']))
+if(isset($_SESSION['uid']))
 {
-  $stuid = $_SESSION['s_uid'];
+  $tuid = $_SESSION['uid'];
 }
-
 require 'db.inc.php';
 
-if(isset($_POST['up']))
-{
-
-
-  $tuid = $_POST['tuid'];
-$uid = $fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
-$sql = "SELECT * FROM teacherpanel WHERE uid = '$tuid'";
+$suid = $_POST['suid'];
+$fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
+$sql = "SELECT * FROM studentpanel WHERE s_uid = '$suid'";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0)
 {
 	while($row = mysqli_fetch_assoc($result))
 	{
-
-		$fname = $row["first_name"];
-		$lname = $row["last_name"];
-    $username = $row["username"];
-		$password = $row["password"];
-    $email = $row["email"];
-    $phone = $row["phone"];
-    $division = $row["division"];
-    $district = $row["district"];
-    $zip = $row["zip"];
-    $institution = $row["Institution"];
-    $department = $row["department"];
-    $address = $row["address"];
-    $subject = $row["subject"];
-		$profilepic = $row["profilepic"];
-		$studentidcard = $row['studentidcard'];
+		$fname = $row["s_first_name"];
+		$lname = $row["s_last_name"];
+    $username = $row["s_username"];
+		$password = $row["s_password"];
+    $email = $row["s_email"];
+    $phone = $row["s_phone"];
+    $division = $row["s_division"];
+    $district = $row["s_district"];
+    $zip = $row["s_zip"];
+    $institution = $row["s_institution"];
+    $department = $row["s_group"];
+    $address = $row["s_address"];
+    $subject = $row["s_subject"];
+		$profilepic = $row["s_profilepic"];
+		$studentidcard = $row['s_studentidcard'];
 
 
 	}
 }
-}
+
 
 
 
@@ -132,7 +120,7 @@ if(mysqli_num_rows($result) > 0)
 
              <div class="box-body">
                       <div class="col-sm-6">
-                      <div  align="center"> <img alt="" src="tutorpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
+                      <div  align="center"> <img alt="" src="studentpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
 
 
 
@@ -150,7 +138,7 @@ if(mysqli_num_rows($result) > 0)
              </div>
              <div class="col-sm-6">
              <h4 style="color:#00b1b1;"> <?php echo $fname; echo ' '; echo $lname; ?>  </h4></span>
-               <span><p>Tutor</p></span>
+               <span><p>Student</p></span>
              </div>
              <div class="clearfix"></div>
              <hr style="margin:5px 0 5px 0;">
@@ -184,32 +172,32 @@ if(mysqli_num_rows($result) > 0)
 
   <div class="clearfix"></div>
  <div class="bot-border"></div>
-
- <form method="post" action="tutorrequest.php"  class="form-disable">
-   <input type="hidden" name="tuuid" value="<?php echo $tuid; ?>" >
+ <form method="post" action="studentrequestaccept.php"  class="form-disable">
+   <input type="hidden" name="suuid" value="<?php echo $suid; ?>" >
 
  <hr class="mb-3">
 <?php
-$sqld = "SELECT * FROM tutorrequwst WHERE uid = '$tuid' and s_uid = '$stuid'";
+$sqld = "SELECT * FROM requestaccept WHERE uid = '$tuid' and s_uid = '$suid'";
 $resultd = mysqli_query($conn, $sqld);
 
 if(mysqli_num_rows($resultd) > 0)
 {
 
  ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" disabled> request sent </button>
+ <button class="btn btn-primary btn-lg btn-block" type="submit" disabled> request accepted </button>
 <?php
 }
 else {
 
  ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit"> send request </button>
+ <button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit"> accept request </button>
 
  <?php
 }
   ?>
 
-</form>
+
+
 
 
 
@@ -224,6 +212,20 @@ else {
      </div>
      </div>
  </div>
+     <script>
+               $(function() {
+     $('#profile-image1').on('click', function() {
+         $('#profile-image-upload').click();
+     });
+ });
+               </script>
+
+
+
+
+
+
+
 
 
 

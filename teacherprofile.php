@@ -119,8 +119,7 @@ if(mysqli_num_rows($result) > 0)
                       <div class="col-sm-6">
                       <div  align="center"> <img alt="" src="tutorpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
 
-                 <input id="profile-image-upload" class="hidden" type="file">
- <div style="color:#999;" >click here to change profile image</div>
+
                  <!--Upload Image Js And Css-->
 
 
@@ -172,7 +171,7 @@ if(mysqli_num_rows($result) > 0)
   <div class="clearfix"></div>
  <div class="bot-border"></div>
  <hr class="mb-3">
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit">Edit Profile</button>
+ <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit"><a class="link" href="editteacherprofile.php">Edit Profile</a></button>
 
 
 

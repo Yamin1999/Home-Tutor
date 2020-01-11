@@ -9,6 +9,24 @@
   <?php
      include "header.php";
    ?>
+
+
+   <?php
+   if(isset($_GET['error']))
+   {
+     if($_GET['error'] == "incorrect-psw")
+     {
+       ?>
+       <br>
+       <br>
+       <br>
+       <div class="alert alert-danger" role="alert">
+        Wrong Username Or Password.
+   </div>
+       <?php
+     }
+   }
+   ?>
   <div class="text-center">
    <div class="login-page">
            <div class="form">
@@ -42,11 +60,9 @@
    </div>
    </div>
  </div>
- <br>
-  <br>
-   <br>
-    <br>
-     <br>
+
+<br>
+
  <?php
 include "footer.php";
   ?>

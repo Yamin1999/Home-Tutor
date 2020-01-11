@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -15,14 +16,12 @@
      include "header.php";
 
 
-     if(isset($_SESSION['username']))
-     {
-     $tuid = $_SESSION['uid'];
-     }
+     $division = $_POST['category'];
+     $district = $_POST['choices'];
       require 'db.inc.php';
 
 
-     $sqlget = "SELECT * FROM teacherpanel,studentpanel,tutorrequwst where teacherpanel.uid=tutorrequwst.uid and teacherpanel.uid =$tuid;";
+     $sqlget = "SELECT * FROM studentpanel,post_to_get where p_division = '$division' AND p_district = '$district' AND studentpanel.s_uid= post_to_get.s_uid;";
      $sqldata = mysqli_query($conn,$sqlget) or die ('error getting');
 ?>
 <br><br><br><br><br><br>
@@ -33,15 +32,14 @@
 
          <thead>
 
-            <th> Profile Pic </th>
-             <th>First Name</th>
-             <th>Last Name</th>
 
 
-               <th> Institution </th>
-               <th> Group </th>
-                  <th>Address</th>
-               <th> Profile</th>
+           <th> subject </th>
+           <th> payment </th>
+               <th>Phone</th>
+               <th>Address</th>
+                <th> Days per week </th>
+               <th> veiw details</th>
          </thead>
 
 
@@ -54,39 +52,34 @@
 
 
 
-
                                  <tr>
+
                                    <td>
-                                       <img src="studentpropic\<?php echo $row['s_profilepic']; ?>" width="50" height="40" alt="">
-                                   </td>
-                              <td>
-                                     <?php echo $row['s_first_name']; ?>
+                                    <?php echo $row['p_subject']; ?>
                                    </td>
                                    <td>
-                                    <?php echo $row['s_last_name']; ?>
+                                     <?php echo $row['p_mpayment']; ?>
+                                   </td>
+                                   <td>
+                                    <?php echo $row['p_phone']; ?>
+                                   </td>
+                                   <td>
+                                     <?php echo $row['p_address']; ?>
+                                   </td>
+                                   <td>
+                                     <?php echo $row['p_dayspw']; ?>
                                    </td>
 
 
-                                   <td>
-                                     <?php echo $row['s_institution']; ?>
-                                   </td>
-                                   <td>
-                                     <?php echo $row['s_group']; ?>
-                                   </td>
-                                   <td>
-                                    <?php echo $row['s_address']; ?>
-                                   </td>
-
-                                   <form method="post" action="teacherrequeststudentprofile.php">
+                                   <form method="post" action="postdetails.php">
 
                                         <input type="hidden" name="suid" value="<?php echo $row['s_uid']; ?>">
                                    <td>
-                                     <input class="btn btn-success" type="submit" name="up" value="View Profile">
+                                     <input class="btn btn-success" type="submit" name="up" value="View details">
 
                                    </td>
+                                 </tr>
 
-                               </form>
-                      </tr>
 
                     <?php } ?>
          </tbody>

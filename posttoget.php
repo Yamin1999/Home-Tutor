@@ -47,58 +47,20 @@
     <div class="container">
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="images\tutor-png.png" alt="" width="92" height="72">
-    <h2>Student Signup</h2>
+    <h2>Post to get Tutor</h2>
 
   </div>
 
   <div class="row"style="margin-left: 60px; width: 1200px;">
     <div class="col-md-8 order-md-1">
 
-      <form class="needs-validation" id="demoForm" method="post" action="studentDB.php" enctype="multipart/form-data" novalidate>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" name="First_name" required>
-            <div class="invalid-feedback">
-              Valid first name is required.
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" name="Last_name" required>
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
-          </div>
-        </div>
-       <div class="row">
-      <div class="col-md-6 mb-3">
-          <label for="username">Username</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">@</span>
-            </div>
-            <input type="text" class="form-control" id="username" name="Username" placeholder="Username"  required>
-            <div class="invalid-feedback" style="width: 100%;">
-           Valid username required.
-            </div>
-          </div>
-        </div>
+      <form class="needs-validation" id="demoForm" method="post" action="posttogetDB.php" enctype="multipart/form-data" novalidate>
 
-
-        <div class="col-md-6 mb-3">
-          <label for="email">Password </label>
-          <input type="password" class="form-control" id="password" name="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-          <div class="invalid-feedback">
-           Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
-          </div>
-        </div>
-      </div>
 
        <div class="row">
         <div class="col-md-6 mb-3">
           <label for="email">Email <span class="text-muted">(Optional)</span></label>
-          <input type="email" class="form-control" id="email" name="Email" placeholder="you@example.com" required>
+          <input type="email" class="form-control" id="email" name="Email" placeholder="you@example.com" >
           <div class="invalid-feedback">
             Please enter a valid email address.
           </div>
@@ -114,68 +76,6 @@
         </div>
       </div>
         <br>
-
-
-          <div class="row">
-       &nbsp  &nbsp
-        <div class="col-md-5 mb-3">
-      <input type="file" class="custom-file-input" id="profilepic" name="profilepic" onchange="return fileValidation()" required>
-      <label class="custom-file-label" for="profilepic">Choose Profile picture</label>
-
-             <img src="" id="profile-img-tagg" width="200px" />
-          <div class="invalid-feedback">
-            choose file in jpg or png format
-          </div>
-        </div>
-
-
-              <script type="text/javascript">
-            function readURL1(input) {
-                if (input.files && input.files[0]) {
-                    var reader1 = new FileReader();
-
-                    reader1.onload = function (e) {
-                        $('#profile-img-tagg').attr('src', e.target.result);
-                    }
-                    reader1.readAsDataURL(input.files[0]);
-                }
-            }
-            $("#profilepic").change(function(){
-                readURL1(this);
-            });
-        </script>
-
- &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp
-        <div class="col-md-5 mb-3">
-          <input type="file" class="custom-file-input" id="studentidcard" name="studentidcard" onchange="return fileValidation1()" required>
-          <label class="custom-file-label" for="studentidcard">Choose Student id card</label>
-          <img src="" id="profile-img-tag" width="200px" />
-          <div class="invalid-feedback">
-            choose file in jpg or png format
-          </div>
-        </div>
-
-
-
-
-      <script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#profile-img-tag').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#studentidcard").change(function(){
-        readURL(this);
-    });
-</script>
-
-</div>
-
 
 
 
@@ -354,7 +254,6 @@
               Please select a group
             </div>
           </div>
-
         </div>
 
         <div class="row">
@@ -372,7 +271,7 @@
           </div>
 
           <div class="col-md-6 mb-3">
-            <label for="Year">Class</label>
+            <label for="Year">class</label>
             <select class="custom-select d-block w-100" id="class" name="class" required>
               <option value="">Choose...</option>
               <option> HSC 1st Year </option>
@@ -380,17 +279,51 @@
               <option> Nine </option>
               <option> Ten </option>
 
+            </select>
+            <div class="invalid-feedback">
+              Year is required.
+            </div>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="payment"> Monthly Pament  <span class="text-muted"> (Apporximate)</span></label>
+            <select class="custom-select d-block w-100" id="mpayment" name="mpayment" required>
+              <option value="">Choose...</option>
+              <option> 2500 </option>
+              <option> 3000 </option>
+                <option> 3500 </option>
+              <option> 4000 </option>
+                <option> 4500 </option>
+              <option> 5000 </option>
+              <option> 6000 </option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid amount.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+                    <label for="payment"> Days  <span class="text-muted"> (per week) </span></label>
+            <select class="custom-select d-block w-100" id="dayspw" name="dayspw" required>
+
+              <option value="">Choose...</option>
+              <option> 3 days/week </option>
+              <option> 4 days/week </option>
+              <option> 5 days/week </option>
 
             </select>
             <div class="invalid-feedback">
-              Class is required.
+              Please select a valid days.
             </div>
           </div>
         </div>
 
 
-
+        <div class="mb-3">
+          <label for="address2">Other Requierments <span class="text-muted"> (optional)</span></label>
+          <input type="text" class="form-control" id="otherrequ" name="otherrequ">
+        </div>
 
         <div class="mb-3">
           <label for="address2">Address<span class="text-muted"> (In details)</span></label>
@@ -399,7 +332,7 @@
 
 
         <div class="mb-3">
-          <label for="Subject">Subject<span class="text-muted"> (in which sub you Want tutor )</span></label>
+          <label for="Subject">Subject<span class="text-muted"> (Want to grt tutor)</span></label>
           <br>
 &nbsp &nbsp &nbsp
           <input type="checkbox" class="form-check-input" id="subject" name="subject[]" value="physics">physics &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -408,38 +341,13 @@
           <input type="checkbox" class="form-check-input" id="subject" name="subject[]" value="english"> english &nbsp &nbsp &nbsp &nbsp &nbsp
         </div>
 
-<script>
-function fileValidation(){
-    var fileInput = document.getElementById('profilepic');
-    var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.jfif)$/i;
-    if(!allowedExtensions.exec(filePath)){
-        alert('Please upload file having extensions .jpeg/.jpg/.png only.');
-        fileInput.value = '';
-        return false;
-    }
-  }
-</script>
-
-<script>
-function fileValidation1(){
-    var fileInput1 = document.getElementById('studentidcard');
-    var filePath1 = fileInput.value;
-    var allowedExtensions1 = /(\.jpg|\.jpeg|\.png|\.jfif)$/i;
-    if(!allowedExtensions.exec(filePath1)){
-        alert('Please upload file having extensions .jpeg/.jpg/.png only.');
-        fileInput.value = '';
-        return false;
-    }
-  }
-  </script>
 
 
 
 
 
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="s_signup-submit">Signup</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" id="signup-submit" value="signup-submit" name="signup-submit">post</button>
 
       </form>
     </div>

@@ -21,7 +21,7 @@
       require 'db.inc.php';
 
 
-     $sqlget = "SELECT uid,first_name,last_name,email,phone,address,Institution,department FROM teacherpanel where subject LIKE '%$subject%' AND division = '$division' AND district = '$district';";
+     $sqlget = "SELECT * FROM teacherpanel where subject LIKE '%$subject%' AND division = '$division' AND district = '$district';";
      $sqldata = mysqli_query($conn,$sqlget) or die ('error getting');
 ?>
 <br><br><br><br><br><br>
@@ -32,14 +32,14 @@
 
          <thead>
 
-
+             <th> Profile Pic </th>
              <th>First Name</th>
              <th>Last Name</th>
-             <th> Email </th>
-               <th>Phone</th>
-               <th>Address</th>
+
+
                <th> Institution </th>
                <th> Department </th>
+                  <th>Address</th>
                <th> Profile</th>
          </thead>
 
@@ -55,30 +55,29 @@
 
 
                                  <tr>
+                                   <td>
+                                       <img src="tutorpropic\<?php echo $row['profilepic']; ?>" width="50" height="40" alt="">
+                                   </td>
                               <td>
                                      <?php echo $row['first_name']; ?>
                                    </td>
                                    <td>
                                     <?php echo $row['last_name']; ?>
                                    </td>
-                                   <td>
-                                    <?php echo $row['email']; ?>
-                                   </td>
-                                   <td>
-                                     <?php echo $row['phone']; ?>
-                                   </td>
-                                   <td>
-                                    <?php echo $row['address']; ?>
-                                   </td>
-                                   <td>
+
+                             <td>
                                      <?php echo $row['Institution']; ?>
                                    </td>
                                    <td>
                                      <?php echo $row['department']; ?>
                                    </td>
 
+                                   <td>
+                                    <?php echo $row['address']; ?>
+                                   </td>
+
                                    <form method="post" action="tutorsearchprofile.php">
-                              
+
                                         <input type="hidden" name="tuid" value="<?php echo $row['uid']; ?>">
                                    <td>
                                      <input class="btn btn-success" type="submit" name="up" value="View Profile">

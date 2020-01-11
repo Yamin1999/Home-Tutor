@@ -1,55 +1,43 @@
 
 <?php
 include "Header.php";
-
  ?>
-
-<br>
-<br>
-<br>
 
 <?php
 
-if(isset($_SESSION['s_uid']))
-{
-  $stuid = $_SESSION['s_uid'];
-}
-
 require 'db.inc.php';
 
-if(isset($_POST['up']))
+if(isset($_SESSION['uid']))
 {
+  $ttuid = $_SESSION['uid'];
+}
 
 
-  $tuid = $_POST['tuid'];
-$uid = $fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
-$sql = "SELECT * FROM teacherpanel WHERE uid = '$tuid'";
+$suid = $_POST['suid'];
+ $email = $phone = $division = $district = $zip = $institution = $department = $gender = $otherequ= '';
+$sql = "SELECT * FROM studentpanel,post_to_get WHERE post_to_get.s_uid = '$suid' AND studentpanel.s_uid=post_to_get.s_uid;";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0)
 {
 	while($row = mysqli_fetch_assoc($result))
 	{
 
-		$fname = $row["first_name"];
-		$lname = $row["last_name"];
-    $username = $row["username"];
-		$password = $row["password"];
-    $email = $row["email"];
-    $phone = $row["phone"];
-    $division = $row["division"];
-    $district = $row["district"];
-    $zip = $row["zip"];
-    $institution = $row["Institution"];
-    $department = $row["department"];
-    $address = $row["address"];
-    $subject = $row["subject"];
-		$profilepic = $row["profilepic"];
-		$studentidcard = $row['studentidcard'];
+    $postid = $row['p_id'];
+    $email = $row["p_email"];
+    $phone = $row["p_phone"];
+    $division = $row["p_division"];
+    $district = $row["p_district"];
+    $zip = $row["p_zip"];
+    $institution = $row["p_institution"];
+    $department = $row["p_group"];
+    $gender = $row['p_gender'];
+    $otherequ = $row['other'];
+
 
 
 	}
 }
-}
+
 
 
 
@@ -125,90 +113,77 @@ if(mysqli_num_rows($result) > 0)
         <div class="col-md-7 ">
 
  <div class="panel panel-default">
-   <div class="panel-heading">  <h4 >User Profile</h4></div>
+   <div class="panel-heading">  <h4 >Post Details</h4></div>
     <div class="panel-body">
 
      <div class="box box-info">
 
              <div class="box-body">
-                      <div class="col-sm-6">
-                      <div  align="center"> <img alt="" src="tutorpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
 
 
 
 
-
-
-
-
-
-                      </div>
-
-               <br>
-
-               <!-- /input-group -->
-             </div>
-             <div class="col-sm-6">
-             <h4 style="color:#00b1b1;"> <?php echo $fname; echo ' '; echo $lname; ?>  </h4></span>
-               <span><p>Tutor</p></span>
-             </div>
-             <div class="clearfix"></div>
-             <hr style="margin:5px 0 5px 0;">
-
-
- <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "> <?php echo $fname ; ?> </div>
+ <div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7 col-xs-6 "> <?php echo $email ; ?> </div>
       <div class="clearfix"></div>
  <div class="bot-border"></div>
 
 
- <div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"><?php echo $lname ; ?>  </div>
+ <div class="col-sm-5 col-xs-6 tital " >Phone:</div><div class="col-sm-7"><?php echo $phone ; ?>  </div>
    <div class="clearfix"></div>
  <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " > Username: </div><div class="col-sm-7"><?php echo $username ; ?></div>
-
-   <div class="clearfix"></div>
- <div class="bot-border"></div>
-
- <div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"><?php echo $email ; ?></div>
+ <div class="col-sm-5 col-xs-6 tital " > Division: </div><div class="col-sm-7"><?php echo $division ; ?></div>
 
    <div class="clearfix"></div>
  <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " >Phone:</div><div class="col-sm-7"><?php echo $phone ; ?></div>
+ <div class="col-sm-5 col-xs-6 tital " >District:</div><div class="col-sm-7"><?php echo $district ; ?></div>
+
+   <div class="clearfix"></div>
+ <div class="bot-border"></div>
+
+ <div class="col-sm-5 col-xs-6 tital " >Institution:</div><div class="col-sm-7"><?php echo $institution ; ?></div>
 
   <div class="clearfix"></div>
  <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $address ; ?></div>
+ <div class="col-sm-5 col-xs-6 tital " >Group:</div><div class="col-sm-7"><?php echo $department ; ?></div>
+
+  <div class="clearfix"></div>
+ <div class="bot-border"></div>
+ <div class="col-sm-5 col-xs-6 tital " >Gender:</div><div class="col-sm-7"><?php echo $gender ; ?></div>
 
   <div class="clearfix"></div>
  <div class="bot-border"></div>
 
- <form method="post" action="tutorrequest.php"  class="form-disable">
-   <input type="hidden" name="tuuid" value="<?php echo $tuid; ?>" >
+ <div class="col-sm-5 col-xs-6 tital " >Other Requierments:</div><div class="col-sm-7"><?php echo $otherequ ; ?></div>
 
+  <div class="clearfix"></div>
+ <div class="bot-border"></div>
+ <form method="post" action="postresponds.php">
+   <input type="hidden" name="suuid" value="<?php echo $suid; ?>" >
+   <input type="hidden" name="postid" value="<?php echo $postid; ?>">
  <hr class="mb-3">
 <?php
-$sqld = "SELECT * FROM tutorrequwst WHERE uid = '$tuid' and s_uid = '$stuid'";
-$resultd = mysqli_query($conn, $sqld);
+ $sqld = "SELECT * FROM postresponse WHERE s_uid = '$suid' AND p_id = '$postid' AND uid ='$ttuid';";
+ $resultd = mysqli_query($conn, $sqld);
+ if(mysqli_num_rows($resultd) > 0)
+ {
+   ?>
+   <button class="btn btn-primary btn-lg btn-block" type="submit"  disabled>Interested</button>
 
-if(mysqli_num_rows($resultd) > 0)
-{
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" disabled> request sent </button>
-<?php
-}
-else {
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit"> send request </button>
 
  <?php
 }
-  ?>
+else {
 
+  ?>
+<button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit">Interested</button>
+
+
+  <?php
+}
+   ?>
 </form>
 
 
@@ -224,6 +199,14 @@ else {
      </div>
      </div>
  </div>
+
+
+
+
+
+
+
+
 
 
 

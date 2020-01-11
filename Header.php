@@ -63,7 +63,7 @@ user-select: none;
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light  fixed-top" style="background-color: #17a2b8;">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
   <img src="images/tutor-png.png" width="60" height="40" alt="">
 </a>
     <a class="navbar-brand" href="index.php">Home Tutor</a>
@@ -108,6 +108,10 @@ user-select: none;
          &nbsp;&nbsp;&nbsp;
          <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="studentprofile.php">My Profile </a></button>
            &nbsp;&nbsp;&nbsp;
+           <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="perticularpostrespondslist.php">Post Responds</a></button>
+             &nbsp;&nbsp;&nbsp;
+             <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a class="link" href="acceptedrequestlist.php">Accepted Requests</a></button>
+               &nbsp;&nbsp;&nbsp;
 
      <?php
     }

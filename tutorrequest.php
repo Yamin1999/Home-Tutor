@@ -11,6 +11,8 @@ $tuid = $_POST['tuuid'];
 require 'db.inc.php';
 
 
+
+
   $stmt = $conn->prepare("INSERT INTO tutorrequwst (uid,s_uid) values (?,?)");
   $stmt->bind_param("ii",$tuid,$s_uid);
   $stmt->execute();

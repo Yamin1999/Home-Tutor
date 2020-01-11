@@ -13,15 +13,17 @@
 
     <?php
      include "header.php";
+  $postno = 1;
 
-
-     $subject = $_POST['subject'];
-     $division = $_POST['category'];
-     $district = $_POST['choices'];
+     if(isset($_SESSION['s_uid']))
+     {
+     $suid = $_SESSION['s_uid'];
+     }
       require 'db.inc.php';
 
+    $postid = $_POST['postid'];
 
-     $sqlget = "SELECT s_first_name,s_last_name,s_email,s_phone,s_address,s_institution,s_group FROM studentpanel where s_subject LIKE '%$subject%' AND s_division = '$division' AND s_district = '$district';";
+     $sqlget = "SELECT * FROM teacherpanel,studentpanel,postresponse,post_to_get where postresponse.s_uid=studentpanel.s_uid and teacherpanel.uid = postresponse.uid and post_to_get.p_id=postresponse.p_id and postresponse.p_id = $postid ;";
      $sqldata = mysqli_query($conn,$sqlget) or die ('error getting');
 ?>
 <br><br><br><br><br><br>
@@ -31,15 +33,15 @@
       <table class="table table-striped w-auto" align="center">
 
          <thead>
-
-
+    <th> SL no </th>
+            <th> Profile Pic </th>
              <th>First Name</th>
              <th>Last Name</th>
-             <th> Email </th>
-               <th>Phone</th>
-               <th>Address</th>
+
+
                <th> Institution </th>
-               <th> Group </th>
+               <th> Department </th>
+                  <th>Address</th>
                <th> Profile</th>
          </thead>
 
@@ -53,38 +55,46 @@
 
 
 
+
                                  <tr>
+                                   <td>
+                                    <?php echo $postno; ?>
+                                   </td>
+                                   <td>
+                                       <img src="tutorpropic\<?php echo $row['profilepic']; ?>" width="50" height="40" alt="">
+                                   </td>
                               <td>
-                                     <?php echo $row['s_first_name']; ?>
+                                     <?php echo $row['first_name']; ?>
                                    </td>
                                    <td>
-                                    <?php echo $row['s_last_name']; ?>
-                                   </td>
-                                   <td>
-                                    <?php echo $row['s_email']; ?>
-                                   </td>
-                                   <td>
-                                     <?php echo $row['s_phone']; ?>
-                                   </td>
-                                   <td>
-                                    <?php echo $row['s_address']; ?>
-                                   </td>
-                                   <td>
-                                     <?php echo $row['s_institution']; ?>
-                                   </td>
-                                   <td>
-                                     <?php echo $row['s_group']; ?>
+                                    <?php echo $row['last_name']; ?>
                                    </td>
 
 
                                    <td>
-                                     <button class="btn btn-success" name="up">Veiw Profile</button>
+                                     <?php echo $row['Institution']; ?>
+                                   </td>
+                                   <td>
+                                     <?php echo $row['department']; ?>
+                                   </td>
+                                   <td>
+                                    <?php echo $row['address']; ?>
+                                   </td>
+
+                                   <form method="post" action="postrespondslistprofile.php">
+
+                                        <input type="hidden" name="tuid" value="<?php echo $row['uid']; ?>">
+                                   <td>
+                                     <input class="btn btn-success" type="submit" name="up" value="View Profile">
 
                                    </td>
-                                 </tr>
 
+                               </form>
+                      </tr>
 
-                    <?php } ?>
+                    <?php
+                 $postno ++;
+                  } ?>
          </tbody>
        </table>
      </div>

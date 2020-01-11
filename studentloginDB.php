@@ -7,7 +7,7 @@ if(isset($_POST['submitin']))
   $username=$_POST['username'];
   $password=$_POST['password'];
 
-  $sql= "SELECT * FROM studentpanel WHERE s_username='$username' AND s_password='$password';";
+  $sql= "SELECT * FROM studentpanel WHERE s_username='$username' AND s_password='".md5($password)."';";
 
 $result = mysqli_query($conn,$sql);
 
@@ -23,7 +23,7 @@ while($row = mysqli_fetch_assoc($result))
 }
 }
 else {
-header("Location: ../Home%20Tutor?error=incorrect-psw");
+header("Location: ../Home%20Tutor/studentlogin.php?error=incorrect-psw");
 }
 
   }

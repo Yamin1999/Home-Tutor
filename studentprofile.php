@@ -172,7 +172,7 @@ if(mysqli_num_rows($result) > 0)
   <div class="clearfix"></div>
  <div class="bot-border"></div>
  <hr class="mb-3">
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit">Edit Profile</button>
+ <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit"><a class="link" href="editstudentprofile.php">Edit Profile </a></button>
 
 
 

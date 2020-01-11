@@ -1,39 +1,24 @@
 
 <?php
 include "Header.php";
-
  ?>
-
-<br>
-<br>
-<br>
 
 <?php
 
-if(isset($_SESSION['s_uid']))
-{
-  $stuid = $_SESSION['s_uid'];
-}
-
 require 'db.inc.php';
 
-if(isset($_POST['up']))
-{
+$tuid = $_POST['tuid'];
 
-
-  $tuid = $_POST['tuid'];
-$uid = $fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
-$sql = "SELECT * FROM teacherpanel WHERE uid = '$tuid'";
+$fname = $lname = $username =  $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = '';
+$sql = "SELECT * FROM teacherpanel  WHERE uid = $tuid";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0)
 {
 	while($row = mysqli_fetch_assoc($result))
 	{
-
 		$fname = $row["first_name"];
 		$lname = $row["last_name"];
     $username = $row["username"];
-		$password = $row["password"];
     $email = $row["email"];
     $phone = $row["phone"];
     $division = $row["division"];
@@ -44,12 +29,12 @@ if(mysqli_num_rows($result) > 0)
     $address = $row["address"];
     $subject = $row["subject"];
 		$profilepic = $row["profilepic"];
-		$studentidcard = $row['studentidcard'];
+
 
 
 	}
 }
-}
+
 
 
 
@@ -150,7 +135,7 @@ if(mysqli_num_rows($result) > 0)
              </div>
              <div class="col-sm-6">
              <h4 style="color:#00b1b1;"> <?php echo $fname; echo ' '; echo $lname; ?>  </h4></span>
-               <span><p>Tutor</p></span>
+               <span><p>Student</p></span>
              </div>
              <div class="clearfix"></div>
              <hr style="margin:5px 0 5px 0;">
@@ -185,31 +170,7 @@ if(mysqli_num_rows($result) > 0)
   <div class="clearfix"></div>
  <div class="bot-border"></div>
 
- <form method="post" action="tutorrequest.php"  class="form-disable">
-   <input type="hidden" name="tuuid" value="<?php echo $tuid; ?>" >
 
- <hr class="mb-3">
-<?php
-$sqld = "SELECT * FROM tutorrequwst WHERE uid = '$tuid' and s_uid = '$stuid'";
-$resultd = mysqli_query($conn, $sqld);
-
-if(mysqli_num_rows($resultd) > 0)
-{
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" disabled> request sent </button>
-<?php
-}
-else {
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit"> send request </button>
-
- <?php
-}
-  ?>
-
-</form>
 
 
 
@@ -224,6 +185,14 @@ else {
      </div>
      </div>
  </div>
+
+
+
+
+
+
+
+
 
 
 

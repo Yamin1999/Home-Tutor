@@ -44,6 +44,34 @@
 <br>
 
 <?php include "header.php" ?>
+
+<?php
+if(isset($_GET['error']))
+{
+  if($_GET['error'] == "invalidemail")
+  {
+    ?>
+    <br>
+    <br>
+    <br>
+    <div class="alert alert-danger" role="alert">
+     Wrong email id.
+</div>
+    <?php
+  }
+  else if($_GET['error'] == "usernametaken")
+  {
+    ?>
+    <br>
+    <br>
+    <br>
+    <div class="alert alert-danger" role="alert">
+     username is already taken.
+</div>
+    <?php
+  }
+}
+?>
     <div class="container">
   <div class="py-5 text-center">
     <img class="d-block mx-auto mb-4" src="images\tutor-png.png" alt="" width="92" height="72">
@@ -80,7 +108,7 @@
             </div>
             <input type="text" class="form-control" id="username" name="Username" placeholder="Username"  required>
             <div class="invalid-feedback" style="width: 100%;">
-           Valid username required.
+           invalid Username, just contain lowercase letter and number .
             </div>
           </div>
         </div>
@@ -350,6 +378,36 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="Gender">Gender</span></label>
+            <select class="custom-select d-block w-100" id="gender" name="gender" required>
+              <option value="">Choose...</option>
+              <option>Male</option>
+              <option> Female </option>
+
+            </select>
+            <div class="invalid-feedback">
+              Please select gender
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="Year">Year</label>
+            <select class="custom-select d-block w-100" id="year" name="year" required>
+              <option value="">Choose...</option>
+              <option>1st Year</option>
+              <option> 2nd Year </option>
+              <option>3rd Year</option>
+              <option> 4th Year </option>
+
+            </select>
+            <div class="invalid-feedback">
+              Year is required.
+            </div>
+          </div>
+        </div>
+
 
 
         <div class="mb-3">
@@ -372,7 +430,7 @@
 function fileValidation(){
     var fileInput = document.getElementById('profilepic');
     var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.jfif)$/i;
     if(!allowedExtensions.exec(filePath)){
         alert('Please upload file having extensions .jpeg/.jpg/.png only.');
         fileInput.value = '';
@@ -385,7 +443,7 @@ function fileValidation(){
 function fileValidation1(){
     var fileInput1 = document.getElementById('studentidcard');
     var filePath1 = fileInput.value;
-    var allowedExtensions1 = /(\.jpg|\.jpeg|\.png)$/i;
+    var allowedExtensions1 = /(\.jpg|\.jpeg|\.png|\.jfif)$/i;
     if(!allowedExtensions.exec(filePath1)){
         alert('Please upload file having extensions .jpeg/.jpg/.png only.');
         fileInput.value = '';

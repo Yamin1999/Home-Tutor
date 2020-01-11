@@ -26,24 +26,40 @@
 include "header.php";
      ?>
 
-<br><br><br><br>
+<br><br><br><br><br><br>
 
-     <div class="card-deck" style="max-width:960px; margin-left:260px;">
+     <div class="card-deck" style="max-width:960px; margin-left:280px;">
        <div class="card">
-         <img src="images\n.png" class="card-img-top" alt="..." >
+         <img src="images\z.png" class="card-img-top" alt="..." >
          <div class="card-body">
-           <h5 class="card-title">Students</h5>
+           <h5 class="card-title">Posts</h5>
            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
          </div>
+
          <?php
          if(isset($_SESSION['uid']))
          {
            ?>
+
          <div class="card-footer">
-          <button class="btn btn-lg btn-primary btn-block" type="submit"><a class="link" href="studentsearch.php">Veiw Student</a></button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit"><a class="link" href="postsearch.php">Veiw posts</a></button>
          </div>
-          <?php } ?>
-       </div>
+
+          <?php }
+
+          else if (isset($_SESSION['s_uid']))
+          {
+            ?>
+            <div class="card-footer">
+             <button class="btn btn-lg btn-primary btn-block" type="submit"><a class="link" href="posttoget.php">Post to get Tutor</a></button>
+            </div>
+            <?php
+          }
+
+           ?>
+
+
+               </div>
        <div class="card">
          <img src="images\teacher.png" class="card-img-top" alt="...">
          <div class="card-body">
@@ -73,7 +89,7 @@ include "header.php";
 
 
      <br>
-     <br>
+
   <?php
 include "footer.php";
    ?>

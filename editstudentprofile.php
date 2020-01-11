@@ -1,55 +1,40 @@
 
 <?php
 include "Header.php";
-
  ?>
-
-<br>
-<br>
-<br>
 
 <?php
 
-if(isset($_SESSION['s_uid']))
-{
-  $stuid = $_SESSION['s_uid'];
-}
-
 require 'db.inc.php';
 
-if(isset($_POST['up']))
-{
-
-
-  $tuid = $_POST['tuid'];
-$uid = $fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
-$sql = "SELECT * FROM teacherpanel WHERE uid = '$tuid'";
+$suid = $_SESSION['s_uid'];
+$fname = $lname = $username = $password = $email = $phone = $division = $district = $zip = $institution = $department = $address = $subject = $profilepic = $studentidcard= '';
+$sql = "SELECT * FROM studentpanel WHERE s_uid = '$suid'";
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0)
 {
 	while($row = mysqli_fetch_assoc($result))
 	{
-
-		$fname = $row["first_name"];
-		$lname = $row["last_name"];
-    $username = $row["username"];
-		$password = $row["password"];
-    $email = $row["email"];
-    $phone = $row["phone"];
-    $division = $row["division"];
-    $district = $row["district"];
-    $zip = $row["zip"];
-    $institution = $row["Institution"];
-    $department = $row["department"];
-    $address = $row["address"];
-    $subject = $row["subject"];
-		$profilepic = $row["profilepic"];
-		$studentidcard = $row['studentidcard'];
+		$fname = $row["s_first_name"];
+		$lname = $row["s_last_name"];
+    $username = $row["s_username"];
+		$password = $row["s_password"];
+    $email = $row["s_email"];
+    $phone = $row["s_phone"];
+    $division = $row["s_division"];
+    $district = $row["s_district"];
+    $zip = $row["s_zip"];
+    $institution = $row["s_institution"];
+    $department = $row["s_group"];
+    $address = $row["s_address"];
+    $subject = $row["s_subject"];
+		$profilepic = $row["s_profilepic"];
+		$studentidcard = $row['s_studentidcard'];
 
 
 	}
 }
-}
+
 
 
 
@@ -129,12 +114,15 @@ if(mysqli_num_rows($result) > 0)
     <div class="panel-body">
 
      <div class="box box-info">
+        <form action="editstudentprofileDB.php" method="post" enctype="multipart/form-data">
 
              <div class="box-body">
                       <div class="col-sm-6">
-                      <div  align="center"> <img alt="" src="tutorpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
+                      <div  align="center"> <img alt="" src="studentpropic\<?php echo $profilepic ?>" id="profile-image1" class="img-circle img-responsive">
 
-
+                        <input id="profile-image-upload" class="custom-file-input" name="studentimage" type="file" value="<?php echo $profilepic;?>">
+        <div style="color:#999;" > <button type="submit" class="btn btn-light" name="image-submit" >click here to change profile image</button></div>
+                 <!--Upload Image Js And Css-->
 
 
 
@@ -150,66 +138,42 @@ if(mysqli_num_rows($result) > 0)
              </div>
              <div class="col-sm-6">
              <h4 style="color:#00b1b1;"> <?php echo $fname; echo ' '; echo $lname; ?>  </h4></span>
-               <span><p>Tutor</p></span>
+               <span><p>Student</p></span>
              </div>
              <div class="clearfix"></div>
              <hr style="margin:5px 0 5px 0;">
 
 
- <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "> <?php echo $fname ; ?> </div>
-      <div class="clearfix"></div>
- <div class="bot-border"></div>
+             <input class="form-control" type="hidden" name="suid" value="<?php echo $suid ; ?>">
+
+              <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "><input class="form-control" type="text" name="fname" value= "<?php echo $fname ; ?>" required="required">  </div>
+                   <div class="clearfix"></div>
+              <div class="bot-border"></div>
 
 
- <div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"><?php echo $lname ; ?>  </div>
-   <div class="clearfix"></div>
- <div class="bot-border"></div>
+              <div class="col-sm-5 col-xs-6 tital " >Last Name:</div> <div class="col-sm-7"> <input class="form-control" type="text" name="lname" value="<?php echo $lname ; ?>" required="required">  </div>
+                <div class="clearfix"></div>
+              <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " > Username: </div><div class="col-sm-7"><?php echo $username ; ?></div>
 
-   <div class="clearfix"></div>
- <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"><?php echo $email ; ?></div>
+              <div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"> <input class="form-control" type="text" name="email" value="<?php echo $email ; ?>" required="required"></div>
 
-   <div class="clearfix"></div>
- <div class="bot-border"></div>
+                <div class="clearfix"></div>
+              <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " >Phone:</div><div class="col-sm-7"><?php echo $phone ; ?></div>
+              <div class="col-sm-5 col-xs-6 tital " >Phone:</div><div class="col-sm-7"><input class="form-control" type="text" name="phone" value="<?php echo $phone ; ?>" required="required"></div>
 
-  <div class="clearfix"></div>
- <div class="bot-border"></div>
+               <div class="clearfix"></div>
+              <div class="bot-border"></div>
 
- <div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><?php echo $address ; ?></div>
+              <div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"> <input class="form-control" type="text" name="address" value="<?php echo $address ; ?>" required="required"></div>
 
-  <div class="clearfix"></div>
- <div class="bot-border"></div>
+               <div class="clearfix"></div>
+              <div class="bot-border"></div>
+              <hr class="mb-3">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name="signup-submit">Update Profile</button>
 
- <form method="post" action="tutorrequest.php"  class="form-disable">
-   <input type="hidden" name="tuuid" value="<?php echo $tuid; ?>" >
-
- <hr class="mb-3">
-<?php
-$sqld = "SELECT * FROM tutorrequwst WHERE uid = '$tuid' and s_uid = '$stuid'";
-$resultd = mysqli_query($conn, $sqld);
-
-if(mysqli_num_rows($resultd) > 0)
-{
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" disabled> request sent </button>
-<?php
-}
-else {
-
- ?>
- <button class="btn btn-primary btn-lg btn-block" type="submit" name="requ-submit"> send request </button>
-
- <?php
-}
-  ?>
-
-</form>
 
 
 
@@ -217,6 +181,7 @@ else {
              <!-- /.box-body -->
            </div>
            <!-- /.box -->
+         </form>
 
          </div>
 
@@ -224,6 +189,20 @@ else {
      </div>
      </div>
  </div>
+     <script>
+               $(function() {
+     $('#profile-image1').on('click', function() {
+         $('#profile-image-upload').click();
+     });
+ });
+               </script>
+
+
+
+
+
+
+
 
 
 
