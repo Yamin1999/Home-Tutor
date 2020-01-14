@@ -63,10 +63,10 @@ user-select: none;
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light  fixed-top" style="background-color: #17a2b8;">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="index.php">
   <img src="images/tutor-png.png" width="60" height="40" alt="">
 </a>
-    <a class="navbar-brand" href="index.html">Home Tutor</a>
+    <a class="navbar-brand" href="index.php">Home Tutor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
